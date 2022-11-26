@@ -2,7 +2,9 @@
     package="com.example.spot_the_bird">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    
    <application
+        android:requestLegacyExternalStorage="true"
         android:label="spot_the_bird"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
