@@ -1,13 +1,33 @@
+// import 'dart:html';
+import 'dart:io';
+import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:spot_the_bird/bloc/location_cubit.dart';
-
+import 'package:image_picker/image_picker.dart';
 import 'add_bird.dart';
 
 class MapScreen extends StatelessWidget {
   final MapController _mapController = MapController();
+
+  Future<void> _pickImageAndCreatePost(
+      {required LatLng latLng, required BuildContext context}) async {
+    File? image;
+    final picker = ImagePicker();
+    final pickedFile =
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 40);
+
+    if (pickedFile != null) {
+      image = File(pickedFile.path);
+
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => AddBirdScreen(latLng: latLng, image: image!)));
+    } else {
+      print("User didn't pick image.");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +55,7 @@ class MapScreen extends StatelessWidget {
         mapController: _mapController,
         options: MapOptions(
           onLongPress: (tapPosition, point) {
-            // Navigator.of(context).push(MaterialPageRoute(
-            //     builder: (context) => AddBirdScreen(latLng: point)));
+            _pickImageAndCreatePost(latLng: point, context: context);
           },
           center: LatLng(0, 0),
           zoom: 16,
