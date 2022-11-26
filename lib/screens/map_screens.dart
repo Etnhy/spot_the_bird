@@ -4,6 +4,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:spot_the_bird/bloc/location_cubit.dart';
 
+import 'add_bird.dart';
+
 class MapScreen extends StatelessWidget {
   final MapController _mapController = MapController();
 
@@ -32,6 +34,10 @@ class MapScreen extends StatelessWidget {
       child: FlutterMap(
         mapController: _mapController,
         options: MapOptions(
+          onLongPress: (tapPosition, point) {
+            // Navigator.of(context).push(MaterialPageRoute(
+            //     builder: (context) => AddBirdScreen(latLng: point)));
+          },
           center: LatLng(0, 0),
           zoom: 16,
           maxZoom: 18,
