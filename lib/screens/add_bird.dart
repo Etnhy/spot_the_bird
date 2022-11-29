@@ -15,18 +15,34 @@ class _AddBirdScreenState extends State<AddBirdScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Add bird"),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "${widget.latLng.latitude} ${widget.latLng.longitude}",
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width / 1.4,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                image: DecorationImage(
+                  image: FileImage(widget.image),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-            ElevatedButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text("POP")),
+            TextField(),
+            TextField(),
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(
+          Icons.check,
+          size: 30,
         ),
       ),
     );

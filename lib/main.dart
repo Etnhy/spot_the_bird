@@ -19,12 +19,12 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
             // App bar color
-            primaryColor: const Color(0xFFCFF5E7),
+            primaryColor: const Color.fromARGB(255, 141, 234, 200),
             colorScheme: const ColorScheme.light().copyWith(
               // Text Field color
-              primary: const Color(0xFFA0E4CB),
+              primary: const Color.fromARGB(255, 85, 156, 130),
               // Floating Action Button
-              secondary: const Color(0xFF59C1BD),
+              secondary: const Color.fromARGB(255, 118, 167, 166),
             )),
         home: MapScreen(),
       ),
