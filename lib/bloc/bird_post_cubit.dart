@@ -14,4 +14,11 @@ class BirdPostCubit extends Cubit<BirdPostState> {
     birdPost.add(birdModel);
     emit(state.copyWith(birdPosts: birdPost, status: BirdPostStatus.loaded));
   }
+
+  void removeBirdPost(BirdModel birdModel) {
+    emit(state.copyWith(status: BirdPostStatus.loading));
+    List<BirdModel> birdPost = state.birdPosts;
+    birdPost.removeWhere((element) => element == birdModel);
+    emit(state.copyWith(birdPosts: birdPost, status: BirdPostStatus.loaded));
+  }
 }

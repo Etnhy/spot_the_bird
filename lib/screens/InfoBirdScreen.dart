@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:spot_the_bird/bloc/bird_post_cubit.dart';
 import 'package:spot_the_bird/models/bird_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BirdPostInfoScreen extends StatelessWidget {
   final BirdModel birdModel;
@@ -31,9 +33,11 @@ class BirdPostInfoScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.headline6),
           SizedBox(height: 5),
           TextButton(
-            child: Text("Delete"),
+            child: const Text("Delete"),
             onPressed: () {
               // Delete this post
+              context.read<BirdPostCubit>().removeBirdPost(birdModel);
+              Navigator.of(context).pop();
             },
           )
         ],
