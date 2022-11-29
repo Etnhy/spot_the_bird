@@ -25,17 +25,17 @@ class BirdPostInfoScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Text(birdModel.birdName!,
               style: Theme.of(context).textTheme.headline5),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(birdModel.birdDescription!,
               style: Theme.of(context).textTheme.headline6),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           TextButton(
             child: const Text("Delete"),
             onPressed: () {
-              // Delete this post
+              // Delete the post
               context.read<BirdPostCubit>().removeBirdPost(birdModel);
               Navigator.of(context).pop();
             },
