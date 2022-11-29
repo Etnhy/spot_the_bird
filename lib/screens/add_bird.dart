@@ -32,14 +32,21 @@ class _AddBirdScreenState extends State<AddBirdScreen> {
     super.dispose();
   }
 
-  void _submit(BirdModel birdModel, BuildContext context) {
+  void _submit(BuildContext context) {
     // save to cubit
     if (!_formKey.currentState!.validate()) {
       //invalid
       return;
     }
-    context.read<BirdPostCubit>().addBirdPost(birdModel);
+
     _formKey.currentState!.save();
+    final BirdModel birdModel = BirdModel(
+        image: widget.image,
+        birdName: name!,
+        latitude: widget.latLng.latitude,
+        longitude: widget.latLng.longitude,
+        birdDescription: description!);
+    context.read<BirdPostCubit>().addBirdPost(birdModel);
     Navigator.of(context).pop();
   }
 
@@ -94,13 +101,7 @@ class _AddBirdScreenState extends State<AddBirdScreen> {
                       hintText: "Enter a Bird description"),
                   textInputAction: TextInputAction.done,
                   onFieldSubmitted: (_) {
-                    final BirdModel birdModel = BirdModel(
-                        image: widget.image,
-                        birdName: name!,
-                        latitude: widget.latLng.latitude,
-                        longitude: widget.latLng.longitude,
-                        birdDescription: description!);
-                    _submit(birdModel, context);
+                    _submit(context);
                   },
                   onChanged: ((newValue) {
                     description = newValue.trim();
@@ -122,20 +123,7 @@ class _AddBirdScreenState extends State<AddBirdScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add bird post to BirdPostCubit
-          // Save bird
-
-          final BirdModel birdModel = BirdModel(
-              image: widget.image,
-              birdName: name!,
-              latitude: widget.latLng.latitude,
-              longitude: widget.latLng.longitude,
-              birdDescription: description!);
-
-          _submit(birdModel, context);
-          //context.read<BirdPostCubit>().addpost(birdModel);
-          // Navigator.of(context).pop();
-          // Later show post on the map
+          _submit(context);
         },
         child: const Icon(
           Icons.check,
