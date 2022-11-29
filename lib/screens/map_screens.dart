@@ -7,6 +7,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:spot_the_bird/bloc/bird_post_cubit.dart';
 import 'package:spot_the_bird/bloc/location_cubit.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:spot_the_bird/constants/constants.dart';
 import 'add_bird.dart';
 import 'package:spot_the_bird/models/bird_model.dart';
 
@@ -38,11 +39,14 @@ class MapScreen extends StatelessWidget {
           width: 55,
           height: 55,
           point: LatLng(post.latitude, post.longitude),
-          builder: (context) {
-            return Container(
-              color: Colors.lightGreenAccent,
-            );
-          },
+          builder: (context) => GestureDetector(
+            onTap: () {
+              // go to detail screen
+            },
+            child: Container(
+              child: Image.asset(BirdIcon.bird_icon),
+            ),
+          ),
         ),
       );
     });
