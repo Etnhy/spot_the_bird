@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:spot_the_bird/bloc/bird_post_cubit.dart';
 import 'package:spot_the_bird/models/bird_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddBirdScreen extends StatefulWidget {
   final LatLng latLng;
@@ -36,6 +38,7 @@ class _AddBirdScreenState extends State<AddBirdScreen> {
       //invalid
       return;
     }
+    context.read<BirdPostCubit>().addBirdPost(birdModel);
     _formKey.currentState!.save();
     Navigator.of(context).pop();
   }
