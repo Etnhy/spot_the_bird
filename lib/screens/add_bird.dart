@@ -100,7 +100,7 @@ class _AddBirdScreenState extends State<AddBirdScreen> {
                     _submit(birdModel, context);
                   },
                   onChanged: ((newValue) {
-                    description = newValue!.trim();
+                    description = newValue.trim();
                   }),
                   validator: (value) {
                     if (value!.isEmpty) {
