@@ -18,10 +18,13 @@
     equatable
     image_picker
     shared_preferences
+    
+    
 <table>
   <tr>
-    <td> Main  </td>
-     <td> Player</td>
+    <td> Заолнение </td>
+     <td> Выбор картинки </td>
+      <td> Выбор картинки </td>
   </tr>
     <tr>
     <td valign="top"><img src="https://user-images.githubusercontent.com/91971233/204857787-e59c76aa-c6aa-4b36-9f60-b47e06e8ab63.png"></td>    
