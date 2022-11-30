@@ -22,9 +22,9 @@
     
 <table>
   <tr>
-    <td> Заолнение </td>
+    <td> Заполнение имени\описания </td>
      <td> Выбор картинки </td>
-      <td> Выбор картинки </td>
+      <td> отоброжение метки на карте </td>
   </tr>
     <tr>
     <td valign="top"><img src="https://user-images.githubusercontent.com/91971233/204857787-e59c76aa-c6aa-4b36-9f60-b47e06e8ab63.png"></td>    
