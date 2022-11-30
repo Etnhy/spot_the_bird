@@ -6,7 +6,7 @@ import 'package:path/path.dart';
 class DatabaseHelper {
   static final _databaseName = "MyDatabase.db";
   static final _dataVersion = 1;
-  static final _table = "table";
+  static final table = "table";
   static final columnId = "id";
   static final columntitle = "birdName";
   static final columnDescription = "birdDescription";
@@ -17,12 +17,15 @@ class DatabaseHelper {
   //Create Singletone
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+  factory DatabaseHelper() {
+    return instance;
+  }
   // Only one app-wide reference to database
   static Database? _database;
 
   Future<Database?> get database async {
     if (database != null) return _database;
-    _database = (await _initDatabase) as Database?;
+    _database = await _initDatabase();
     return _database;
   }
 
@@ -34,29 +37,28 @@ class DatabaseHelper {
 
   Future<void> _onCreate(Database database, int version) async {
     await database.execute("""
-CREATE TABLE $_table (
-  $columnId INTEGER PRIMARY KEY,
-  $columntitle TEXT NOT NULL,
-  $columnDescription TEXT NOT NULL,
-  $columnUrl TEXT NOT NULL,
-  $latitude REAL NOT NULL,
-  $longitude REAL NOT NULL )
-
+      CREATE TABLE $table (
+      $columnId INTEGER PRIMARY KEY,
+      $columntitle TEXT NOT NULL,
+      $columnDescription TEXT NOT NULL,
+      $columnUrl TEXT NOT NULL,
+      $latitude REAL NOT NULL,
+      $longitude REAL NOT NULL )
       """);
 
     Future<int?> insert(Map<String, dynamic> row) async {
       Database? db = await instance.database;
-      return await db!.insert(_table, row);
+      return await db!.insert(table, row);
     }
 
-    Future<List<Map<String, dynamic>>> queryAllRows() async {
+    Future<List<Map<String, dynamic>>> qureyAllRows() async {
       Database? db = await instance.database;
-      return db!.query(_table);
+      return await db!.query(table);
     }
 
     delete(int, id) async {
       Database? db = await instance.database;
-      return await db!.delete(_table, where: "$columnId = ?", whereArgs: [id]);
+      return await db!.delete(table, where: "$columnId = ?", whereArgs: [id]);
     }
   }
 }
