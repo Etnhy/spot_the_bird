@@ -2,6 +2,21 @@
 
 Зажатии на карте,переход в выбор фото\картинки , после можно добавить название,
  и описание самой картинки. После нажатия на "сохранить" сохраняется в локальную базу данных точка на карте.
+ 
+ Flutter
+ Local database
+ bloc
+ geolocation
+ //--------
+ Packages: 
+    flutter_map
+    latlong2
+    geolocator
+    bloc
+    flutter_bloc
+    equatable
+    image_picker
+    shared_preferences
 
 
 ## Getting Started
